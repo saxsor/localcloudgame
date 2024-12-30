@@ -22,7 +22,7 @@ let dpadMode = true;
 
 function onDpadToggle(checked) {
     if (dpadMode === checked) {
-        return //error?
+        return; //error?
     }
     if (dpadMode) {
         dpadMode = false;
@@ -236,7 +236,37 @@ const onGamepadConnected = (e) => {
         }
     }
 
-    // reset state
+    // Xbox Controller Mapping
+    if (gamepad.id.includes('Xbox 360 Controller') || gamepad.id.includes('XInput STANDARD GAMEPAD')) {
+        joystickMap = {
+            0: KEY.A,        // A
+            1: KEY.B,        // B
+            2: KEY.X,        // X
+            3: KEY.Y,        // Y
+            4: KEY.L,        // Left Bumper (LB)
+            5: KEY.R,        // Right Bumper (RB)
+            6: KEY.L2,       // Left Trigger (LT)
+            7: KEY.R2,       // Right Trigger (RT)
+            8: KEY.SELECT,   // Back
+            9: KEY.START,    // Start
+            10: KEY.L3,      // Left Stick Press
+            11: KEY.R3,      // Right Stick Press
+            12: KEY.UP,      // D-Pad Up
+            13: KEY.DOWN,    // D-Pad Down
+            14: KEY.LEFT,    // D-Pad Left
+            15: KEY.RIGHT,   // D-Pad Right
+            16: KEY.GUIDE    // Xbox Guide Button (optional)
+        };
+
+    	// Ejes para el control
+    	joystickAxes[0] = "LEFT_HORIZONTAL"; // Eje horizontal del stick izquierdo
+    	joystickAxes[1] = "LEFT_VERTICAL";   // Eje vertical del stick izquierdo
+    	joystickAxes[2] = "RIGHT_HORIZONTAL"; // Eje horizontal del stick derecho
+    	joystickAxes[3] = "RIGHT_VERTICAL";   // Eje vertical del stick derecho
+    }
+
+
+    // Reset state
     joystickState = {[KEY.LEFT]: false, [KEY.RIGHT]: false, [KEY.UP]: false, [KEY.DOWN]: false};
     Object.keys(joystickMap).forEach(function (btnIdx) {
         joystickState[btnIdx] = false;
@@ -244,7 +274,7 @@ const onGamepadConnected = (e) => {
 
     joystickAxes = new Array(gamepad.axes.length).fill(0);
 
-    // looper, too intense?
+    // Looper, too intense?
     if (joystickTimer !== null) {
         clearInterval(joystickTimer);
     }
@@ -275,10 +305,10 @@ sub(DPAD_TOGGLE, (data) => onDpadToggle(data.checked));
  */
 export const joystick = {
     init: () => {
-        // we only capture the last plugged joystick
+        // We only capture the last plugged joystick
         window.addEventListener('gamepadconnected', onGamepadConnected);
 
-        // disconnected event is triggered
+        // Disconnected event is triggered
         window.addEventListener('gamepaddisconnected', (event) => {
             clearInterval(joystickTimer);
             log.info(`Gamepad disconnected at index ${event.gamepad.index}`);
@@ -287,4 +317,4 @@ export const joystick = {
 
         log.info('[input] joystick has been initialized');
     }
-}
+};
