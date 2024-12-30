@@ -1,0 +1,124 @@
+services:
+
+  cloud-game-user1:
+    build: .
+    image: jal-cloud-game
+    container_name: jal-cloud-game
+    environment:
+      - DISPLAY=:99
+      - MESA_GL_VERSION_OVERRIDE=4.5
+      - CLOUD_GAME_WEBRTC_SINGLEPORT=8443
+      # - CLOUD_GAME_WEBRTC_ICEIPMAP=127.0.0.1
+      - CLOUD_GAME_COORDINATOR_DEBUG=true
+      - CLOUD_GAME_WORKER_DEBUG=true
+      # - PION_LOG_TRACE=all
+    ports:
+      - "8089:8000"
+      - "9001:9000"
+      - "8443:8443/udp"
+    command: >
+      bash -c "./coordinator & ./worker"
+    volumes:
+      #- ./assets/cores:/usr/local/share/cloud-game/assets/cores
+      #- ./assets/games:/usr/local/share/cloud-game/assets/games
+      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
+      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
+      - /home/jal/cloudretro/jalsave:/root/.cr/save
+      - x11:/tmp/.X11-unix
+
+  cloud-game-user2:
+    build: .
+    image: pam-cloud-game
+    container_name: pam-cloud-game
+    environment:
+      - DISPLAY=:99
+      - MESA_GL_VERSION_OVERRIDE=4.5
+      - CLOUD_GAME_WEBRTC_SINGLEPORT=8444
+      - CLOUD_GAME_COORDINATOR_DEBUG=true
+      - CLOUD_GAME_WORKER_DEBUG=true
+    ports:
+      - "8088:8000"
+      - "9002:9000"
+      - "8444:8443/udp"
+    command: >
+      bash -c "./coordinator & ./worker"
+    volumes:
+      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
+      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
+      - /home/jal/cloudretro/pamsave:/root/.cr/save
+      - x11:/tmp/.X11-unix
+
+  cloud-game-user3:
+    build: .
+    image: hela-cloud-game
+    container_name: hela-cloud-game
+    environment:
+      - DISPLAY=:99
+      - MESA_GL_VERSION_OVERRIDE=4.5
+      - CLOUD_GAME_WEBRTC_SINGLEPORT=8445
+      - CLOUD_GAME_COORDINATOR_DEBUG=true
+      - CLOUD_GAME_WORKER_DEBUG=true
+    ports:
+      - "8087:8000"
+      - "9003:9000"
+      - "8445:8443/udp"
+    command: >
+      bash -c "./coordinator & ./worker"
+    volumes:
+      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
+      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
+      - /home/jal/cloudretro/helasave:/root/.cr/save
+      - x11:/tmp/.X11-unix
+
+  cloud-game-user4:
+    build: .
+    image: lynn-cloud-game
+    container_name: lynn-cloud-game
+    environment:
+      - DISPLAY=:99
+      - MESA_GL_VERSION_OVERRIDE=4.5
+      - CLOUD_GAME_WEBRTC_SINGLEPORT=8445
+      - CLOUD_GAME_COORDINATOR_DEBUG=true
+      - CLOUD_GAME_WORKER_DEBUG=true
+    ports:
+      - "8086:8000"
+      - "9004:9000"
+      - "8446:8443/udp"
+    command: >
+      bash -c "./coordinator & ./worker"
+    volumes:
+      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
+      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
+      - /home/jal/cloudretro/lynnsave:/root/.cr/save
+      - x11:/tmp/.X11-unix
+
+  cloud-game-user5:
+    build: .
+    image: pepe-cloud-game
+    container_name: pepe-cloud-game
+    environment:
+      - DISPLAY=:99
+      - MESA_GL_VERSION_OVERRIDE=4.5
+      - CLOUD_GAME_WEBRTC_SINGLEPORT=8445
+      - CLOUD_GAME_COORDINATOR_DEBUG=true
+      - CLOUD_GAME_WORKER_DEBUG=true
+    ports:
+      - "8085:8000"
+      - "9005:9000"
+      - "8447:8443/udp"
+    command: >
+      bash -c "./coordinator & ./worker"
+    volumes:
+      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
+      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
+      - /home/jal/cloudretro/pepesave:/root/.cr/save
+      - x11:/tmp/.X11-unix
+
+  xvfb:
+    image: kcollins/xvfb:latest
+    volumes:
+      - x11:/tmp/.X11-unix
+    command: [ ":99", "-screen", "0", "320x240x16" ]
+
+volumes:
+  x11:
