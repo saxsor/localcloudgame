@@ -2,8 +2,8 @@ services:
 
   cloud-game-user1:
     build: .
-    image: jal-cloud-game
-    container_name: jal-cloud-game
+    image: cloud-game-user1
+    container_name: cloud-game-user1
     environment:
       - DISPLAY=:99
       - MESA_GL_VERSION_OVERRIDE=4.5
@@ -21,15 +21,15 @@ services:
     volumes:
       #- ./assets/cores:/usr/local/share/cloud-game/assets/cores
       #- ./assets/games:/usr/local/share/cloud-game/assets/games
-      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
-      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
-      - /home/jal/cloudretro/jalsave:/root/.cr/save
+      - /crear/un/directorio/local/games:/usr/local/share/cloud-game/assets/games
+      - /crear/un/directorio/local/cores:/usr/local/share/cloud-game/assets/cores
+      - /crear/un/directorio/local/user1saves:/root/.cr/save
       - x11:/tmp/.X11-unix
 
   cloud-game-user2:
     build: .
-    image: pam-cloud-game
-    container_name: pam-cloud-game
+    image: cloud-game-user2
+    container_name: cloud-game-user2
     environment:
       - DISPLAY=:99
       - MESA_GL_VERSION_OVERRIDE=4.5
@@ -43,15 +43,15 @@ services:
     command: >
       bash -c "./coordinator & ./worker"
     volumes:
-      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
-      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
-      - /home/jal/cloudretro/pamsave:/root/.cr/save
+      - /crear/un/directorio/local/games:/usr/local/share/cloud-game/assets/games
+      - /crear/un/directorio/local/cores:/usr/local/share/cloud-game/assets/cores
+      - /crear/un/directorio/local/user2saves:/root/.cr/save
       - x11:/tmp/.X11-unix
 
   cloud-game-user3:
     build: .
-    image: hela-cloud-game
-    container_name: hela-cloud-game
+    image: cloud-game-user3
+    container_name: cloud-game-user3
     environment:
       - DISPLAY=:99
       - MESA_GL_VERSION_OVERRIDE=4.5
@@ -65,15 +65,15 @@ services:
     command: >
       bash -c "./coordinator & ./worker"
     volumes:
-      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
-      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
-      - /home/jal/cloudretro/helasave:/root/.cr/save
+      - /crear/un/directorio/local/games:/usr/local/share/cloud-game/assets/games
+      - /crear/un/directorio/local/cores:/usr/local/share/cloud-game/assets/cores
+      - /crear/un/directorio/local/user3saves:/root/.cr/save
       - x11:/tmp/.X11-unix
 
   cloud-game-user4:
     build: .
-    image: lynn-cloud-game
-    container_name: lynn-cloud-game
+    image: cloud-game-user4
+    container_name: cloud-game-user4
     environment:
       - DISPLAY=:99
       - MESA_GL_VERSION_OVERRIDE=4.5
@@ -87,15 +87,15 @@ services:
     command: >
       bash -c "./coordinator & ./worker"
     volumes:
-      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
-      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
-      - /home/jal/cloudretro/lynnsave:/root/.cr/save
+      - /crear/un/directorio/local/games:/usr/local/share/cloud-game/assets/games
+      - /crear/un/directorio/local/cores:/usr/local/share/cloud-game/assets/cores
+      - /crear/un/directorio/local/user4saves:/root/.cr/save
       - x11:/tmp/.X11-unix
 
   cloud-game-user5:
     build: .
-    image: pepe-cloud-game
-    container_name: pepe-cloud-game
+    image: cloud-game-user5
+    container_name: cloud-game-user5
     environment:
       - DISPLAY=:99
       - MESA_GL_VERSION_OVERRIDE=4.5
@@ -109,9 +109,9 @@ services:
     command: >
       bash -c "./coordinator & ./worker"
     volumes:
-      - /home/jal/cloudretro/roms:/usr/local/share/cloud-game/assets/games
-      - /home/jal/cloudretro/cores:/usr/local/share/cloud-game/assets/cores
-      - /home/jal/cloudretro/pepesave:/root/.cr/save
+      - /crear/un/directorio/local/games:/usr/local/share/cloud-game/assets/games
+      - /crear/un/directorio/local/cores:/usr/local/share/cloud-game/assets/cores
+      - /crear/un/directorio/local/user5saves:/root/.cr/save
       - x11:/tmp/.X11-unix
 
   xvfb:
