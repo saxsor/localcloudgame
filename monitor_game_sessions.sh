@@ -2,11 +2,11 @@
 
 # Asociación entre contenedores y sus scripts de actualización
 declare -A container_scripts=(
-    ["jal-cloud-game"]="/usr/local/bin/update_jalsaves.sh"
-    ["pam-cloud-game"]="/usr/local/bin/update_pamsaves.sh"
-    ["hela-cloud-game"]="/usr/local/bin/update_helasaves.sh"
-    ["lynn-cloud-game"]="/usr/local/bin/update_lynnsaves.sh"
-    ["pepe-cloud-game"]="/usr/local/bin/update_pepesaves.sh"
+    ["ID DEL CONTENEDOR"]="/usr/local/bin/update_user#saves.sh"
+    ["ID DEL CONTENEDOR"]="/usr/local/bin/update_user#saves.sh"
+    ["ID DEL CONTENEDOR"]="/usr/local/bin/update_user#saves.sh"
+    ["ID DEL CONTENEDOR"]="/usr/local/bin/update_user#saves.sh"
+    ["ID DEL CONTENEDOR"]="/usr/local/bin/update_user#saves.sh"
 )
 
 # Directorio para guardar el histórico de sesiones procesadas por contenedor
