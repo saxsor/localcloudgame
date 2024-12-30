@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SAVE_DIR="/home/jal/cloudretro/jalsave"  # Ruta al directorio de saves
+SAVE_DIR="/crear/un/directorio/local/user1saves"  # Ruta al directorio de saves
 SESSION_ID="$1"  # Nuevo ID de sesión proporcionado como argumento
 
 if [ -z "$SESSION_ID" ]; then
