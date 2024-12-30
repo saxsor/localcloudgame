@@ -1,5 +1,5 @@
-PROJECT = cloud-game
-REPO_ROOT = github.com/giongto35
+PROJECT = localcloudgame
+REPO_ROOT = github.com/saxsor
 ROOT = ${REPO_ROOT}/${PROJECT}
 
 CGO_CFLAGS='-g -O3'
