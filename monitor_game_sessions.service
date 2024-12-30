@@ -11,8 +11,8 @@ RestartSec=5s
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=MonitorGameSessions
-User=jal
-WorkingDirectory=/home/jal
+User=*SETEA TU USUARIO*
+WorkingDirectory=/SETEA/TU/home/USUARIO
 
 [Install]
 WantedBy=multi-user.target
