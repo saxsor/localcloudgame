@@ -1,0 +1,18 @@
+[Unit]
+Description=Monitor de sesiones de juegos en Cloudretro
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bash /usr/local/bin/monitor_game_sessions.sh
+Restart=always
+RestartSec=5s
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=MonitorGameSessions
+User=jal
+WorkingDirectory=/home/jal
+
+[Install]
+WantedBy=multi-user.target
