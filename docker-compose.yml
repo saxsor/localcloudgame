@@ -8,10 +8,8 @@ services:
       - DISPLAY=:99
       - MESA_GL_VERSION_OVERRIDE=4.5
       - CLOUD_GAME_WEBRTC_SINGLEPORT=8443
-      # - CLOUD_GAME_WEBRTC_ICEIPMAP=127.0.0.1
       - CLOUD_GAME_COORDINATOR_DEBUG=true
       - CLOUD_GAME_WORKER_DEBUG=true
-      # - PION_LOG_TRACE=all
     ports:
       - "8089:8000"
       - "9001:9000"
@@ -19,8 +17,6 @@ services:
     command: >
       bash -c "./coordinator & ./worker"
     volumes:
-      #- ./assets/cores:/usr/local/share/cloud-game/assets/cores
-      #- ./assets/games:/usr/local/share/cloud-game/assets/games
       - /crear/un/directorio/local/games:/usr/local/share/cloud-game/assets/games
       - /crear/un/directorio/local/cores:/usr/local/share/cloud-game/assets/cores
       - /crear/un/directorio/local/user1saves:/root/.cr/save
